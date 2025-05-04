@@ -26,3 +26,14 @@ jobs:
     - name: Run Tests
       run: |
         pytest
+
+    - name: Run Coverage
+      run: |
+        pip install pytest-cov
+        pytest --cov=core --cov-report=xml
+  
+    - name: Upload Coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage.xml
+        fail_ci_if_error: true    
